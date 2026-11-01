@@ -1,0 +1,60 @@
+{
+  "tour": "Северобайкальск: там, где начинается БАМ",
+  "note": "Все фотографии — из Wikimedia Commons, свободные лицензии. Перед публикацией проверьте требования лицензий CC BY / CC BY-SA: нужно указывать автора и лицензию (это уже сделано в подписях внутри тура).",
+  "photos": [
+    {
+      "stop": 1,
+      "file": "images/stop1.jpg",
+      "title": "Железнодорожный вокзал",
+      "source": "Severobaikalsk station - panoramio.jpg",
+      "author": "Raki_Man",
+      "license": "CC BY 3.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Severobaikalsk_station_-_panoramio.jpg"
+    },
+    {
+      "stop": 2,
+      "file": "images/stop2.jpg",
+      "title": "Набережная Байкала",
+      "source": "Пляж в городе Северобайкальск.jpg",
+      "author": "Яковлев Роман Олегович",
+      "license": "CC BY-SA 4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Пляж_в_городе_Северобайкальск.jpg"
+    },
+    {
+      "stop": 3,
+      "file": "images/stop3.jpg",
+      "title": "Виртуальный музей БАМа",
+      "source": "Вид внутри музея в Северобайкальске 2009-08-01.jpg",
+      "author": "Liendain",
+      "license": "CC BY 2.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Вид_внутри_музея_в_Северобайкальске_2009-08-01.jpg"
+    },
+    {
+      "stop": 4,
+      "file": "images/stop4.jpg",
+      "title": "Гоуджекит и Дзелинда",
+      "source": "Р. Гоуджекит и автомобильный мост - panoramio.jpg",
+      "author": "Svetlana Ivanova",
+      "license": "CC BY 3.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Р._Гоуджекит_и_автомобильный_мост_-_panoramio.jpg"
+    },
+    {
+      "stop": 5,
+      "file": "images/stop5.jpg",
+      "title": "Северомуйский тоннель",
+      "source": "Восточные ворота Северомуйского тоннеля.jpg",
+      "author": "MOROVICTOR",
+      "license": "CC BY-SA 3.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Восточные_ворота_Северомуйского_тоннеля.jpg"
+    },
+    {
+      "stop": 6,
+      "file": "images/stop6.jpg",
+      "title": "Финал: Северобайкальск с высоты",
+      "source": "Северобайкальск 01.jpg",
+      "author": "Yuri Samoilov",
+      "license": "CC BY-SA 3.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Северобайкальск_01.jpg"
+    }
+  ]
+}
