@@ -133,7 +133,6 @@
   .modal-card ul{margin:0 0 16px;padding-left:20px;font-size:13.5px;line-height:1.7;color:#c9d8dd}
   .modal-card .close-modal{margin-top:6px;background:rgba(255,255,255,.07);border:1px solid var(--line);border-radius:10px;padding:10px 16px;cursor:pointer}
 
-  /* Стили викторины */
   .quiz-container{margin-top:20px}
   .quiz-question{margin-bottom:20px;padding:16px;background:rgba(255,255,255,.04);border-radius:12px}
   .quiz-question h4{margin:0 0 12px;font-size:15px;color:var(--ink)}
@@ -150,11 +149,6 @@
     margin-top:20px;padding:20px;background:rgba(224,185,106,.15);border-radius:12px;
     text-align:center;font-size:16px;font-weight:600;color:var(--accent)
   }
-  .quiz-btn{
-    margin-top:12px;padding:12px 24px;background:linear-gradient(135deg,#e8c98f,#c9974a);
-    color:#241a0c;border:0;border-radius:10px;cursor:pointer;font-weight:600;font-size:14px
-  }
-  .quiz-btn:hover{filter:brightness(1.06)}
 
   @media (max-width:760px){
     header{padding:12px 14px 8px}
@@ -223,7 +217,6 @@
 
 <nav class="route" id="route" aria-label="Маршрут экскурсии"></nav>
 
-<!-- Модальное окно "О туре" -->
 <div class="modal" id="modal">
   <div class="modal-card">
     <h2>О виртуальной экскурсии</h2>
@@ -236,7 +229,6 @@
   </div>
 </div>
 
-<!-- Модальное окно викторины -->
 <div class="modal" id="quizModal">
   <div class="modal-card">
     <h2>Викторина: «Насколько хорошо вы узнали Северобайкальск?»</h2>
@@ -246,122 +238,118 @@
 </div>
 
 <script>
-/* ================= данные экскурсии ================= */
 const STOPS = [
   {
-    id:"station",
-    title:"«Точка отсчёта» — Вокзал Северобайкальска",
-    subtitle:"360°-панорама привокзальной площади",
-    img:"images/stop1.jpg",
-    text:"«Добро пожаловать в Северобайкальск! До 1974 года здесь была глухая тайга. Город родился вместе с БАМом, и вокзал стал его сердцем. Именно сюда прибывали первые строительные отряды. Сегодня это „ворота" северного Байкала. Оглянитесь: горы окружают город со всех сторон».",
-    facts:[
-      "1974 год — дата основания города Северобайкальска",
-      "1977 год — посёлок получил статус города",
-      "1989 год — официально образован Северобайкальский район"
+    id: 'station',
+    title: '«Точка отсчёта» — Вокзал Северобайкальска',
+    subtitle: '360°-панорама привокзальной площади',
+    img: 'images/stop1.jpg',
+    text: '«Добро пожаловать в Северобайкальск! До 1974 года здесь была глухая тайга. Город родился вместе с БАМом, и вокзал стал его сердцем. Именно сюда прибывали первые строительные отряды. Сегодня это «ворота» северного Байкала. Оглянитесь: горы окружают город со всех сторон».',
+    facts: [
+      '1974 год — дата основания города Северобайкальска',
+      '1977 год — посёлок получил статус города',
+      '1989 год — официально образован Северобайкальский район'
     ]
   },
   {
-    id:"baikal",
-    title:"«Город у великого озера» — Набережная и мыс Кадильный",
-    subtitle:"360°-панорама набережной с видом на Байкал",
-    img:"images/stop2.jpg",
-    text:"«Перед нами — северная, самая глубокая часть Байкала. Глубина здесь достигает 1642 метров, а вода настолько прозрачна, что весной видно дно на глубине 40 метров. Мыс Кадильный вдали — любимое место туристов. Летом здесь золотистый песок, зимой — знаменитый прозрачный лёд. Промышленная деятельность здесь запрещена, поэтому северный Байкал сохранил первозданность».",
-    facts:[
-      "Байкал — самое глубокое озеро мира: 1642 м",
-      "В нём около 20 % мировых запасов пресной воды",
-      "Объект Всемирного наследия ЮНЕСКО"
+    id: 'baikal',
+    title: '«Город у великого озера» — Набережная и мыс Кадильный',
+    subtitle: '360°-панорама набережной с видом на Байкал',
+    img: 'images/stop2.jpg',
+    text: '«Перед нами — северная, самая глубокая часть Байкала. Глубина здесь достигает 1642 метров, а вода настолько прозрачна, что весной видно дно на глубине 40 метров. Мыс Кадильный вдали — любимое место туристов. Летом здесь золотистый песок, зимой — знаменитый прозрачный лёд. Промышленная деятельность здесь запрещена, поэтому северный Байкал сохранил первозданность».',
+    facts: [
+      'Байкал — самое глубокое озеро мира: 1642 м',
+      'В нём около 20 % мировых запасов пресной воды',
+      'Объект Всемирного наследия ЮНЕСКО'
     ]
   },
   {
-    id:"museum",
-    title:"«Виртуальный музей БАМа»",
-    subtitle:"3D-выставочное пространство с экспонатами",
-    img:"images/stop3.jpg",
-    text:"«Мы в виртуальном музее БАМа. БАМ — не просто железная дорога, а „становой хребет" экономики района. Без него не было бы ни города, ни района. Пройдитесь по залам: фотографии первых строителей, макет Северомуйского тоннеля, предметы быта бамовцев — гитары, палатки, дневники».",
-    facts:[
-      "Фотографии первых строителей БАМа",
-      "Макет Северомуйского тоннеля",
-      "Предметы быта бамовцев 1970–1980-х годов"
+    id: 'museum',
+    title: '«Виртуальный музей БАМа»',
+    subtitle: '3D-выставочное пространство с экспонатами',
+    img: 'images/stop3.jpg',
+    text: '«Мы в виртуальном музее БАМа. БАМ — не просто железная дорога, а «становой хребет» экономики района. Без него не было бы ни города, ни района. Пройдитесь по залам: фотографии первых строителей, макет Северомуйского тоннеля, предметы быта бамовцев — гитары, палатки, дневники».',
+    facts: [
+      'Фотографии первых строителей БАМа',
+      'Макет Северомуйского тоннеля',
+      'Предметы быта бамовцев 1970–1980-х годов'
     ]
   },
   {
-    id:"springs",
-    title:"«Тайга и источники» — Гоуджекит и Дзелинда",
-    subtitle:"360°-панорама природных источников",
-    img:"images/stop4.jpg",
-    text:"«Мы на горячих источниках Гоуджекит. Температура воды здесь +50 °C даже зимой, когда на улице −40 °C. Туристы приезжают сюда круглый год. Вокруг — темнохвойная тайга: кедр, пихта, ель. Здесь обитают медведь, лось, кабарга, соболь, а выше в горах — северный олень. Это настоящий заповедник дикой природы».",
-    facts:[
-      "Температура воды: +50°C круглый год",
-      "Флора: кедр, пихта, ель",
-      "Фауна: медведь, лось, кабарга, соболь, северный олень"
+    id: 'springs',
+    title: '«Тайга и источники» — Гоуджекит и Дзелинда',
+    subtitle: '360°-панорама природных источников',
+    img: 'images/stop4.jpg',
+    text: '«Мы на горячих источниках Гоуджекит. Температура воды здесь +50 °C даже зимой, когда на улице −40 °C. Туристы приезжают сюда круглый год. Вокруг — темнохвойная тайга: кедр, пихта, ель. Здесь обитают медведь, лось, кабарга, соболь, а выше в горах — северный олень. Это настоящий заповедник дикой природы».',
+    facts: [
+      'Температура воды: +50°C круглый год',
+      'Флора: кедр, пихта, ель',
+      'Фауна: медведь, лось, кабарга, соболь, северный олень'
     ]
   },
   {
-    id:"tunnel",
-    title:"«Подземный гигант» — Северомуйский тоннель",
-    subtitle:"360°-панорама портала тоннеля",
-    img:"images/stop5.jpg",
-    text:"«Перед нами — Северомуйский тоннель, самый длинный железнодорожный тоннель в России: 15 343 метра. Строительство шло с 1977 по 2003 год — более четверти века! Строители проходили через разломы, подземные воды и вечную мерзлоту. Сегодня это объект индустриального туризма, а для экологов — пример бережного отношения к Байкалу».",
-    facts:[
-      "15 343 м — длина тоннеля",
-      "Строительство: 1977–2003 годы (26 лет)",
-      "Самый длинный железнодорожный тоннель в России"
+    id: 'tunnel',
+    title: '«Подземный гигант» — Северомуйский тоннель',
+    subtitle: '360°-панорама портала тоннеля',
+    img: 'images/stop5.jpg',
+    text: '«Перед нами — Северомуйский тоннель, самый длинный железнодорожный тоннель в России: 15 343 метра. Строительство шло с 1977 по 2003 год — более четверти века! Строители проходили через разломы, подземные воды и вечную мерзлоту. Сегодня это объект индустриального туризма, а для экологов — пример бережного отношения к Байкалу».',
+    facts: [
+      '15 343 м — длина тоннеля',
+      'Строительство: 1977–2003 годы (26 лет)',
+      'Самый длинный железнодорожный тоннель в России'
     ]
   },
   {
-    id:"finale",
-    title:"«Финал» — Виртуальная смотровая площадка",
-    subtitle:"Панорама города с высоты птичьего полёта",
-    img:"images/stop6.jpg",
-    text:"«Посмотрите на Северобайкальск с высоты: небольшой город между горами и великим озером. Он был построен за считанные годы благодаря энтузиазму тысяч людей. Сегодня это центр притяжения туристов. Виртуальная экскурсия позволила „пройти" этот маршрут, не выходя из дома. Но увидев эту красоту на экране, вы захотите увидеть её вживую. Северобайкальск ждёт вас!»",
-    facts:[
-      "Образовательная задача: знакомство с историей БАМа",
-      "Просветительская задача: бережное отношение к природе",
-      "Маркетинговая задача: мотивация на реальную поездку"
+    id: 'finale',
+    title: '«Финал» — Виртуальная смотровая площадка',
+    subtitle: 'Панорама города с высоты птичьего полёта',
+    img: 'images/stop6.jpg',
+    text: '«Посмотрите на Северобайкальск с высоты: небольшой город между горами и великим озером. Он был построен за считанные годы благодаря энтузиазму тысяч людей. Сегодня это центр притяжения туристов. Виртуальная экскурсия позволила «пройти» этот маршрут, не выходя из дома. Но увидев эту красоту на экране, вы захотите увидеть её вживую. Северобайкальск ждёт вас!»',
+    facts: [
+      'Образовательная задача: знакомство с историей БАМа',
+      'Просветительская задача: бережное отношение к природе',
+      'Маркетинговая задача: мотивация на реальную поездку'
     ],
     hasQuiz: true
   }
 ];
 
-/* ================= викторина ================= */
 const QUIZ = [
-  {q:"В каком году Северобайкальск получил статус города?", options:["1974","1980","1989"], correct:1},
-  {q:"Сколько метров в длину Северомуйский тоннель?", options:["5 343 м","10 343 м","15 343 м"], correct:2},
-  {q:"Какова максимальная глубина Байкала?", options:["1 642 м","1 200 м","2 100 м"], correct:0},
-  {q:"Когда в Северобайкальск прибыли первые строители БАМа?", options:["23 июля 1974 года","1 сентября 1975 года","5 ноября 1980 года"], correct:0},
-  {q:"На какой реке выходят горячие источники?", options:["Тыя","Гоуджекит","Кичера"], correct:1},
-  {q:"Какой объект называют «воротами» Северобайкальска?", options:["морской порт","железнодорожный вокзал","музей БАМа"], correct:1},
-  {q:"Какая доля мировых запасов пресной воды сосредоточена в Байкале?", options:["около 5 %","около 20 %","около 50 %"], correct:1},
-  {q:"Сколько лет строился Северомуйский тоннель?", options:["5 лет","12 лет","26 лет"], correct:2},
-  {q:"Что представлено в музее БАМа?", options:["документы, фотографии и вещи строителей","образцы минералов","современная техника"], correct:0},
-  {q:"К какой категории отнесён Северобайкальский район по климату?", options:["районы Крайнего Севера","средняя полоса","субтропики"], correct:0}
+  {q:'В каком году Северобайкальск получил статус города?', options:['1974','1980','1989'], correct:1},
+  {q:'Сколько метров в длину Северомуйский тоннель?', options:['5 343 м','10 343 м','15 343 м'], correct:2},
+  {q:'Какова максимальная глубина Байкала?', options:['1 642 м','1 200 м','2 100 м'], correct:0},
+  {q:'Когда в Северобайкальск прибыли первые строители БАМа?', options:['23 июля 1974 года','1 сентября 1975 года','5 ноября 1980 года'], correct:0},
+  {q:'На какой реке выходят горячие источники?', options:['Тыя','Гоуджекит','Кичера'], correct:1},
+  {q:'Какой объект называют «воротами» Северобайкальска?', options:['морской порт','железнодорожный вокзал','музей БАМа'], correct:1},
+  {q:'Какая доля мировых запасов пресной воды сосредоточена в Байкале?', options:['около 5 %','около 20 %','около 50 %'], correct:1},
+  {q:'Сколько лет строился Северомуйский тоннель?', options:['5 лет','12 лет','26 лет'], correct:2},
+  {q:'Что представлено в музее БАМа?', options:['документы, фотографии и вещи строителей','образцы минералов','современная техника'], correct:0},
+  {q:'К какой категории отнесён Северобайкальский район по климату?', options:['районы Крайнего Севера','средняя полоса','субтропики'], correct:0}
 ];
 
-/* ================= элементы ================= */
-const vp      = document.getElementById("viewport");
-const canvas  = document.getElementById("canvas");
-const photo   = document.getElementById("photo");
-const bar     = document.getElementById("bar");
-const numEl   = document.getElementById("num");
-const titleEl = document.getElementById("title");
-const subEl   = document.getElementById("subtitle");
-const panel   = document.getElementById("panel");
-const route   = document.getElementById("route");
-const modal   = document.getElementById("modal");
-const quizModal = document.getElementById("quizModal");
-const quizContainer = document.getElementById("quizContainer");
+const vp = document.getElementById('viewport');
+const canvas = document.getElementById('canvas');
+const photo = document.getElementById('photo');
+const bar = document.getElementById('bar');
+const numEl = document.getElementById('num');
+const titleEl = document.getElementById('title');
+const subEl = document.getElementById('subtitle');
+const panel = document.getElementById('panel');
+const route = document.getElementById('route');
+const modal = document.getElementById('modal');
+const quizModal = document.getElementById('quizModal');
+const quizContainer = document.getElementById('quizContainer');
 
 let current = 0;
 let base = 1, z = 1, tx = 0, ty = 0;
 
-/* ================= масштаб и перетаскивание ================= */
 function layout(){
   const vw = vp.clientWidth, vh = vp.clientHeight;
   const iw = photo.naturalWidth  || 1600;
   const ih = photo.naturalHeight || 1000;
   base = Math.max(vw / iw, vh / ih);
-  canvas.style.width  = (iw * base) + "px";
-  canvas.style.height = (ih * base) + "px";
+  canvas.style.width  = (iw * base) + 'px';
+  canvas.style.height = (ih * base) + 'px';
 }
 
 function clampView(){
@@ -372,7 +360,7 @@ function clampView(){
 }
 
 function render(){
-  canvas.style.transform = "translate3d(" + tx + "px," + ty + "px,0) scale(" + z + ")";
+  canvas.style.transform = 'translate3d(' + tx + 'px,' + ty + 'px,0) scale(' + z + ')';
 }
 
 function resetView(){
@@ -384,125 +372,132 @@ function resetView(){
   render();
 }
 
-const pad = n => String(n).padStart(2, "0");
+const pad = n => String(n).padStart(2, '0');
 
-/* ================= переключение остановок ================= */
 function show(i){
   current = (i + STOPS.length) % STOPS.length;
   const s = STOPS[current];
 
-  photo.classList.remove("ready");
+  photo.classList.remove('ready');
+
+  photo.onerror = () => {
+    resetView();
+    photo.classList.add('ready');
+    console.warn('Не удалось загрузить картинку: ' + s.img);
+  };
+
   photo.onload = () => {
     resetView();
-    photo.classList.add("ready");
+    photo.classList.add('ready');
   };
+
   photo.src = s.img;
-  if (photo.complete && photo.naturalWidth) {
-    resetView();
-    photo.classList.add("ready");
+
+  if (photo.complete) {
+    if (photo.naturalWidth) {
+      resetView();
+      photo.classList.add('ready');
+    } else {
+      photo.onerror();
+    }
   }
 
-  numEl.textContent = pad(current + 1) + " / " + pad(STOPS.length);
+  numEl.textContent = pad(current + 1) + ' / ' + pad(STOPS.length);
   titleEl.textContent = s.title;
   subEl.textContent = s.subtitle;
-  bar.style.width = ((current + 1) / STOPS.length * 100) + "%";
+  bar.style.width = ((current + 1) / STOPS.length * 100) + '%';
 
-  document.getElementById("pEyebrow").textContent = "Остановка " + (current + 1);
-  document.getElementById("pTitle").textContent = s.title;
-  document.getElementById("pText").textContent = s.text;
+  document.getElementById('pEyebrow').textContent = 'Остановка ' + (current + 1);
+  document.getElementById('pTitle').textContent = s.title;
+  document.getElementById('pText').textContent = s.text;
 
-  const list = document.getElementById("pFacts");
-  list.innerHTML = "";
+  const list = document.getElementById('pFacts');
+  list.innerHTML = '';
   s.facts.forEach((f, k) => {
-    const li = document.createElement("li");
-    const b = document.createElement("span");
+    const li = document.createElement('li');
+    const b = document.createElement('span');
     b.textContent = pad(k + 1);
     li.appendChild(b);
     li.appendChild(document.createTextNode(f));
     list.appendChild(li);
   });
 
-  // Кнопка "Следующая" или "Пройти викторину"
-  const nextBtn = document.getElementById("pNext");
+  const nextBtn = document.getElementById('pNext');
   if (s.hasQuiz) {
-    nextBtn.innerHTML = "Пройти викторину <span>?</span>";
+    nextBtn.innerHTML = 'Пройти викторину <span>?</span>';
     nextBtn.onclick = () => openQuiz();
   } else {
-    nextBtn.innerHTML = "Следующая остановка <span>›</span>";
+    nextBtn.innerHTML = 'Следующая остановка <span>›</span>';
     nextBtn.onclick = () => show(current + 1);
   }
 
-  document.getElementById("subline").textContent =
-    "остановка " + (current + 1) + " из " + STOPS.length + " · " + s.title;
+  document.getElementById('subline').textContent =
+    'остановка ' + (current + 1) + ' из ' + STOPS.length + ' · ' + s.title;
 
-  [...route.children].forEach((b, k) => b.classList.toggle("active", k === current));
-  panel.classList.add("open");
+  [...route.children].forEach((b, k) => b.classList.toggle('active', k === current));
+  panel.classList.add('open');
 }
 
-/* ================= маршрут ================= */
 STOPS.forEach((s, i) => {
-  const b = document.createElement("button");
-  b.innerHTML = "<b>" + pad(i + 1) + "</b><span></span>";
-  b.querySelector("span").textContent = s.title;
-  b.addEventListener("click", () => { show(i); });
+  const b = document.createElement('button');
+  b.innerHTML = '<b>' + pad(i + 1) + '</b><span></span>';
+  b.querySelector('span').textContent = s.title;
+  b.addEventListener('click', () => { show(i); });
   route.appendChild(b);
 });
 
-/* ================= кнопки ================= */
-document.getElementById("prev").addEventListener("click", () => show(current - 1));
-document.getElementById("next").addEventListener("click", () => show(current + 1));
-document.getElementById("closePanel").addEventListener("click", () => panel.classList.remove("open"));
-document.getElementById("btnAbout").addEventListener("click", () => modal.classList.add("open"));
-document.getElementById("closeModal").addEventListener("click", () => modal.classList.remove("open"));
-modal.addEventListener("click", e => { if (e.target === modal) modal.classList.remove("open"); });
+document.getElementById('prev').addEventListener('click', () => show(current - 1));
+document.getElementById('next').addEventListener('click', () => show(current + 1));
+document.getElementById('closePanel').addEventListener('click', () => panel.classList.remove('open'));
+document.getElementById('btnAbout').addEventListener('click', () => modal.classList.add('open'));
+document.getElementById('closeModal').addEventListener('click', () => modal.classList.remove('open'));
+modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
 
-document.getElementById("closeQuiz").addEventListener("click", () => {
-  quizModal.classList.remove("open");
-  quizContainer.innerHTML = "";
+document.getElementById('closeQuiz').addEventListener('click', () => {
+  quizModal.classList.remove('open');
+  quizContainer.innerHTML = '';
 });
-quizModal.addEventListener("click", e => { 
+quizModal.addEventListener('click', e => {
   if (e.target === quizModal) {
-    quizModal.classList.remove("open");
-    quizContainer.innerHTML = "";
+    quizModal.classList.remove('open');
+    quizContainer.innerHTML = '';
   }
 });
 
-document.querySelector(".caption").addEventListener("click", () => {
-  if(panel.classList.contains("open")) panel.classList.remove("open");
-  else panel.classList.add("open");
+document.querySelector('.caption').addEventListener('click', () => {
+  if (panel.classList.contains('open')) panel.classList.remove('open');
+  else panel.classList.add('open');
 });
 
-/* ================= клавиатура ================= */
-document.addEventListener("keydown", e => {
-  if (e.key === "ArrowRight") { show(current + 1); }
-  if (e.key === "ArrowLeft")  { show(current - 1); }
-  if (e.key === "Escape")     { 
-    panel.classList.remove("open"); 
-    modal.classList.remove("open");
-    quizModal.classList.remove("open");
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') { show(current + 1); }
+  if (e.key === 'ArrowLeft')  { show(current - 1); }
+  if (e.key === 'Escape')     {
+    panel.classList.remove('open');
+    modal.classList.remove('open');
+    quizModal.classList.remove('open');
   }
 });
 
-/* ================= мышь и тач ================= */
 let drag = null;
-vp.addEventListener("pointerdown", e => {
+vp.addEventListener('pointerdown', e => {
   drag = { x: e.clientX, y: e.clientY, tx, ty, id: e.pointerId };
   vp.setPointerCapture(e.pointerId);
-  vp.classList.add("dragging");
+  vp.classList.add('dragging');
 });
-vp.addEventListener("pointermove", e => {
+vp.addEventListener('pointermove', e => {
   if (!drag) return;
   tx = drag.tx + (e.clientX - drag.x);
   ty = drag.ty + (e.clientY - drag.y);
   clampView();
   render();
 });
-const endDrag = () => { drag = null; vp.classList.remove("dragging"); };
-vp.addEventListener("pointerup", endDrag);
-vp.addEventListener("pointercancel", endDrag);
-vp.addEventListener("pointerleave", endDrag);
+const endDrag = () => { drag = null; vp.classList.remove('dragging'); };
+vp.addEventListener('pointerup', endDrag);
+vp.addEventListener('pointercancel', endDrag);
+vp.addEventListener('pointerleave', endDrag);
 
-vp.addEventListener("wheel", e => {
+vp.addEventListener('wheel', e => {
   e.preventDefault();
   const r = vp.getBoundingClientRect();
   const mx = e.clientX - r.left, my = e.clientY - r.top;
@@ -515,7 +510,7 @@ vp.addEventListener("wheel", e => {
   render();
 }, { passive: false });
 
-vp.addEventListener("dblclick", () => {
+vp.addEventListener('dblclick', () => {
   const old = z;
   z = z > 1.05 ? 1 : 1.8;
   const r = vp.getBoundingClientRect();
@@ -526,9 +521,8 @@ vp.addEventListener("dblclick", () => {
   render();
 });
 
-/* ================= ресайз ================= */
 let resizeTimer = null;
-window.addEventListener("resize", () => {
+window.addEventListener('resize', () => {
   clearTimeout(resizeTimer);
   resizeTimer = setTimeout(() => {
     const oldZ = z;
@@ -539,37 +533,35 @@ window.addEventListener("resize", () => {
   }, 120);
 });
 
-/* ================= викторина ================= */
 function openQuiz(){
-  quizContainer.innerHTML = "";
+  quizContainer.innerHTML = '';
   let score = 0;
   let answered = 0;
 
   QUIZ.forEach((item, idx) => {
-    const qDiv = document.createElement("div");
-    qDiv.className = "quiz-question";
-    
-    const h4 = document.createElement("h4");
-    h4.textContent = (idx + 1) + ". " + item.q;
+    const qDiv = document.createElement('div');
+    qDiv.className = 'quiz-question';
+
+    const h4 = document.createElement('h4');
+    h4.textContent = (idx + 1) + '. ' + item.q;
     qDiv.appendChild(h4);
 
-    const optsDiv = document.createElement("div");
-    optsDiv.className = "quiz-options";
+    const optsDiv = document.createElement('div');
+    optsDiv.className = 'quiz-options';
 
     item.options.forEach((opt, optIdx) => {
-      const btn = document.createElement("button");
-      btn.className = "quiz-option";
+      const btn = document.createElement('button');
+      btn.className = 'quiz-option';
       btn.textContent = opt;
-      btn.addEventListener("click", () => {
+      btn.addEventListener('click', () => {
         if (btn.disabled) return;
-        
-        // Блокируем все кнопки в этом вопросе
-        optsDiv.querySelectorAll(".quiz-option").forEach(b => {
+
+        optsDiv.querySelectorAll('.quiz-option').forEach(b => {
           b.disabled = true;
           if (parseInt(b.dataset.idx) === item.correct) {
-            b.classList.add("correct");
+            b.classList.add('correct');
           } else if (b === btn && optIdx !== item.correct) {
-            b.classList.add("wrong");
+            b.classList.add('wrong');
           }
         });
 
@@ -577,22 +569,22 @@ function openQuiz(){
         answered++;
 
         if (answered === QUIZ.length) {
-          const result = document.createElement("div");
-          result.className = "quiz-result";
-          result.innerHTML = "Результат: " + score + " из " + QUIZ.length + "<br><br>";
-          
+          const result = document.createElement('div');
+          result.className = 'quiz-result';
+          result.innerHTML = 'Результат: ' + score + ' из ' + QUIZ.length + '<br><br>';
+
           if (score === QUIZ.length) {
-            result.innerHTML += "🏆 Отлично! Вы настоящий знаток Северобайкальска!";
+            result.innerHTML += '🏆 Отлично! Вы настоящий знаток Северобайкальска!';
           } else if (score >= 7) {
-            result.innerHTML += "👍 Хороший результат! Вы многое узнали о районе.";
+            result.innerHTML += '👍 Хороший результат! Вы многое узнали о районе.';
           } else if (score >= 4) {
-            result.innerHTML += "📚 Неплохо, но стоит пройти экскурсию ещё раз.";
+            result.innerHTML += '📚 Неплохо, но стоит пройти экскурсию ещё раз.';
           } else {
-            result.innerHTML += "🔄 Рекомендуем пройти экскурсию заново.";
+            result.innerHTML += '🔄 Рекомендуем пройти экскурсию заново.';
           }
-          
+
           quizContainer.appendChild(result);
-          document.getElementById("closeQuiz").style.display = "block";
+          document.getElementById('closeQuiz').style.display = 'block';
         }
       });
       btn.dataset.idx = optIdx;
@@ -603,10 +595,9 @@ function openQuiz(){
     quizContainer.appendChild(qDiv);
   });
 
-  quizModal.classList.add("open");
+  quizModal.classList.add('open');
 }
 
-/* ================= старт ================= */
 show(0);
 </script>
 </body>
